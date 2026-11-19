@@ -58,6 +58,7 @@ if st.button("Проверить"):
                         "type": cls["type"],
                         "confidence": cls["confidence"],
                         "text": text,
+                        "content": uploaded_file.getvalue(),
                     }
                 )
             finally:
@@ -106,6 +107,11 @@ if "results" in st.session_state:
             ],
             "check": check,
         }
+        # Сохраняем исходные файлы пакета вместе с результатом.
+        for result in results:
+            safe_name = Path(result["filename"]).name
+            (out_dir / safe_name).write_bytes(result["content"])
+
         with (out_dir / "result.json").open("w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)
         st.success(f"Сохранено в {out_dir}")
