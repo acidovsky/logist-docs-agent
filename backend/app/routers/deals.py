@@ -29,8 +29,8 @@ def _get_owned_deal(
     ).first()
     if deal is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Deal not found",
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Нет прав доступа к сделке",
         )
     return deal
 
