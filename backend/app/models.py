@@ -1,9 +1,14 @@
 """Модели SQLModel: пользователь, сделка, документ."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from sqlmodel import Field, SQLModel
+
+
+def utcnow() -> datetime:
+    """Текущее время в UTC с часовым поясом."""
+    return datetime.now(timezone.utc)
 
 
 class User(SQLModel, table=True):
@@ -13,7 +18,7 @@ class User(SQLModel, table=True):
     email: str = Field(index=True, unique=True)
     hashed_password: str
     is_active: bool = True
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=utcnow)
 
 
 class Deal(SQLModel, table=True):
@@ -24,10 +29,10 @@ class Deal(SQLModel, table=True):
     description: Optional[str] = None
     status: str = "open"  # open | complete
     owner_id: int = Field(foreign_key="user.id", index=True)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(
-        default_factory=datetime.utcnow,
-        sa_column_kwargs={"onupdate": datetime.utcnow},
+        default_factory=utcnow,
+        sa_column_kwargs={"onupdate": utcnow},
     )
 
 
@@ -41,4 +46,4 @@ class Document(SQLModel, table=True):
     file_path: str
     ocr_text: Optional[str] = None
     confidence: Optional[float] = None
-    uploaded_at: datetime = Field(default_factory=datetime.utcnow)
+    uploaded_at: datetime = Field(default_factory=utcnow)

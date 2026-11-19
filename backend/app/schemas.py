@@ -74,3 +74,23 @@ class DocumentRead(BaseModel):
     uploaded_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class UserLogin(BaseModel):
+    """Вход пользователя."""
+
+    email: str
+    password: str
+
+
+class Token(BaseModel):
+    """Ответ с токеном доступа."""
+
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    """Данные, извлечённые из токена."""
+
+    email: str

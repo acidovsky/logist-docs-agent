@@ -8,6 +8,7 @@ from sqlmodel import SQLModel
 
 from .database import engine, create_db_and_tables
 from . import models  # noqa: F401 — регистрация моделей в метаданных
+from .routers import auth as auth_router
 
 
 @asynccontextmanager
@@ -31,6 +32,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(auth_router.router)
 
 
 @app.get("/api/health")
