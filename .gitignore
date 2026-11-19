@@ -12,7 +12,8 @@ venv/
 !.aider.conf.yml
 
 # Результаты работы приложения
-output/
+output/*
+!output/.gitkeep
 
 # ОС / IDE
 .DS_Store
