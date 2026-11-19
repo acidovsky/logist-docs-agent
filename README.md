@@ -1,26 +1,27 @@
-﻿# Logist Docs Agent
+# Logist Docs Agent
 
-## Что это
-Агент, который проверяет комплектность документов по логистической перевозке. Пользователь загружает фото/сканы/PDF, агент распознаёт текст, определяет тип каждого документа и говорит: «вот это есть, вот этого не хватает».
+Многопользовательский веб-сервис для работы с пакетами логистических документов.
 
-## Стек
-- Python 3.11+
-- Streamlit
-- Tesseract OCR (локально)
-- DeepSeek API (OpenAI-совместимый клиент)
-- PyYAML
+## Структура проекта
 
-## MVP
-1. Загрузка файлов (jpg/png/pdf).
-2. OCR → текст.
-3. LLM определяет тип документа → JSON.
-4. Сверка с config.yaml.
-5. Чек-лист ✅/❌.
-6. Кнопка «Сохранить пакет» → output/.
+- `backend/` — серверная часть на FastAPI, SQLModel и SQLite. Код приложения находится в `backend/app/`, загруженные файлы — в `backend/uploads/`.
+- `frontend/` — интерфейс на React и TypeScript, собирается через Vite.
+- `legacy/` — исходный прототип на Streamlit. Папка сохранена для справки и не изменяется.
 
 ## Запуск
-pip install -r requirements.txt
-streamlit run app.py
 
-## Переменные
-DEEPSEEK_API_KEY
+Backend:
+
+```powershell
+cd backend
+.venv\Scripts\uvicorn.exe app.main:app --host 127.0.0.1 --port 8000
+```
+
+Frontend:
+
+```powershell
+cd frontend
+npm run dev
+```
+
+Интерфейс открывается по адресу `http://localhost:5173`, документация API — `http://localhost:8000/docs`. Запросы с интерфейса на `/api` проксируются на backend.

@@ -11,10 +11,6 @@ venv/
 .aider*
 !.aider.conf.yml
 
-# Результаты работы приложения
-output/*
-!output/.gitkeep
-
 # Backend
 backend/data.db
 backend/uploads/
