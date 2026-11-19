@@ -4,9 +4,10 @@ import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios'
 export const TOKEN_KEY = 'token'
 
 // Клиент запросов к backend через прокси Vite.
+// Заголовок Content-Type не задаём вручную: axios сам выставит JSON для объектов
+// и позволит браузеру указать boundary для загрузки файлов.
 export const client = axios.create({
   baseURL: '/api',
-  headers: { 'Content-Type': 'application/json' },
 })
 
 // Прикладываем токен к каждому запросу.
