@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Секреты
+.env
+
+# Aider
+.aider*
+!.aider.conf.yml
+
+# Результаты работы приложения
+output/
+
+# ОС / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
