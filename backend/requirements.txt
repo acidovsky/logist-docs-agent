@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+sqlmodel
+pydantic
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+python-dotenv
+openai
+pytesseract
+pdf2image
+Pillow
+pyyaml

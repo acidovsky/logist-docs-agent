@@ -15,6 +15,11 @@ venv/
 output/*
 !output/.gitkeep
 
+# Backend
+backend/data.db
+backend/uploads/
+*.db
+
 # ОС / IDE
 .DS_Store
 Thumbs.db
