@@ -94,3 +94,10 @@ class TokenData(BaseModel):
     """Данные, извлечённые из токена."""
 
     email: str
+
+
+class ChecklistRead(BaseModel):
+    """Результат проверки комплектности пакета документов."""
+
+    present: list[str]
+    missing: list[str]
